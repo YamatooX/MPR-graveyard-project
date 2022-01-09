@@ -1,24 +1,27 @@
 package com.example.demo.models;
 
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.util.List;
 
 //Entity
 //@Table name
 
 // Najpierw czytaj, potem implementuj!!!
-
+@Entity
+@Table(name = "Grave")
 public class Grave {
-    //ID
-    //Generated value
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Corpse corpse;
-    //@relacje! z corpsem
-    //cascade type.ALL
+    private Integer capacity;
+    @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Corpse> corpses;
 
-    public Grave(Integer id, Corpse corpse, List<Corpse> corpses) {
+    public Grave(Integer id, List<Corpse> corpses) {
         this.id = id;
-        this.corpse = corpse;
         this.corpses = corpses;
     } // constructor with all fields
 
@@ -33,15 +36,8 @@ public class Grave {
         this.id = id;
     } // set
 
-    public Corpse getCorpse() {
-        return corpse;
-    } //get
-
-    public void setCorpse(Corpse corpse) {
-        this.corpse = corpse;
-    } //set
-
     public void setCorpses(List<Corpse> corpses) {
+        if(this.capacity isEqual())
         this.corpses = corpses;
     } // set
 
@@ -61,7 +57,6 @@ public class Grave {
     public String toString() {
         return "Grave{" +
                 "id=" + id +
-                ", corpse=" + corpse +
                 ", corpses=" + corpses +
                 '}';
     }

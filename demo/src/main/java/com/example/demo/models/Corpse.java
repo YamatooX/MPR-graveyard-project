@@ -1,5 +1,10 @@
 package com.example.demo.models;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 //@Entity
 //@TAblename
@@ -8,16 +13,16 @@ import java.util.Date;
 
 public class Corpse {
 
-    //Id
-    //Generated values
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String lastName;
-    private Date deathDate;
-    //relacja z grobem
+    private String deathDate;
+    @ManyToOne
     private Grave grave;
 
-    public Corpse(Integer id, String name, String lastName, Date deathDate) {
+    public Corpse(Integer id, String name, String lastName, String deathDate) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -35,12 +40,9 @@ public class Corpse {
         this.id = id;
     }
 
-
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -53,11 +55,11 @@ public class Corpse {
         this.lastName = lastName;
     }
 
-    public Date getDeathDate() {
+    public String getDeathDate() {
         return deathDate;
     }
 
-    public void setDeathDate(Date deathDate) {
+    public void setDeathDate(String deathDate) {
         this.deathDate = deathDate;
     }
 
