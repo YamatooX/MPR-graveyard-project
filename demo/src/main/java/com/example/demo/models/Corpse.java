@@ -1,16 +1,14 @@
 package com.example.demo.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 //@Entity
 //@TAblename
 
 // Najpierw poczytaj, potem implementuj!!!!
-
+@Entity
+@Table(name = "Corpse")
 public class Corpse {
 
     @Id
@@ -30,6 +28,14 @@ public class Corpse {
     }
 
     public Corpse() {
+    }
+
+    public Grave getGrave() {
+        return grave;
+    }
+
+    public void setGrave(Grave grave) {
+        this.grave = grave;
     }
 
     public Integer getId() {

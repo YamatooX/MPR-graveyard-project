@@ -1,14 +1,14 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.Corpse;
 import com.example.demo.models.Grave;
 import com.example.demo.repositories.CorpseRepository;
 import com.example.demo.repositories.GraveRepository;
 import com.example.demo.services.GraveService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/grave")
@@ -20,13 +20,24 @@ public class GraveRestController {
         this.graveService = graveService;
     }
 
+
+    @GetMapping
+    public ResponseEntity<String> helloWorld() {
+        return ResponseEntity.ok("Hello world");
+    }
+
     @GetMapping("/example")
-    public ResponseEntity<Grave> getEzampleGrave(){
+    public ResponseEntity<Grave> getExampleGrave(){
         return ResponseEntity.ok(graveService.getExampleGrave());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Grave> getById(@PathVariable Integer id){
         return ResponseEntity.ok(graveService.findById(id));
+    }
+    @GetMapping("/all")
+    public ResponseEntity<Collection<Grave>> getAllGraves(){
+        return ResponseEntity.ok(graveService.getAllGraves());
+
     }
 }
